@@ -9,8 +9,7 @@
 int main() {
     int a[N];
     int b[N];
-    int c[N];
-    int d[N];  
+    int c[N];  
     double start = 0.0;
     double end = 0.0;
     int i=0;
@@ -22,17 +21,15 @@ int main() {
     start = omp_get_wtime();
     #pragma omp parallel for 
         for(i=0; i<N; i++) {
-            c[i] = a[i]+b[i]; 
-            //printf("Thread %d works on element %d\n", omp_get_thread_num(), i);
+            if((i+1)==N) {
+                c[i] = a[i]*1 +b[i]*1; 
+                //printf("Thread %d works on element %d\n", omp_get_thread_num(), i);
+            } 
+            else {
+                c[i] = a[i]*a[i+1] +b[i]*b[i+1]; 
+                //printf("Thread %d works on element %d\n", omp_get_thread_num(), i);
+            } 
         }   
-    end = omp_get_wtime();
-    std::cout << "Tempo di inizio: " << start << ", tempo di fine: " << end << ", deltat: " << (end-start) << std::endl;
-
-    start = omp_get_wtime();
-    for(i=0; i<N; i++) {
-            d[i] = a[i]+b[i]; 
-            //printf("Thread %d works on element %d\n", omp_get_thread_num(), i);
-        } 
     end = omp_get_wtime();
     std::cout << "Tempo di inizio: " << start << ", tempo di fine: " << end << ", deltat: " << (end-start) << std::endl;
     return 0;
