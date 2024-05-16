@@ -18,7 +18,7 @@ int main() {
         a[i] = i;
         b[i] = i;           
     }
-    omp_set_num_threads(4);
+    //omp_set_num_threads(4);
     start = omp_get_wtime();
     #pragma omp parallel for 
         for(i=0; i<N; i++) {

@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(int argc, char** argv) {
-    omp_set_num_threads(16);
+    //omp_set_num_threads(16);
     #pragma omp parallel 
     {
         int myThreadID = omp_get_thread_num();
